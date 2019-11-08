@@ -1,4 +1,4 @@
-import reducer from "./reducers";
+import reducer from "./reducer";
 import actions from "./actions";
 import types from "./types";
 

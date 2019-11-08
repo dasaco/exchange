@@ -3,61 +3,18 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { AppState } from "../../state/store";
 import Currency from "../../interfaces/Currency.interface";
-
-const Container = styled.div`
-  position: relative;
-`;
-
-const Toggle = styled.button`
-  display: flex;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-  outline: none;
-  padding: 0;
-`;
-
-const CurrencyText = styled.span`
-  font-size: 39px;
-  text-transform: uppercase;
-  color: #292929;
-`;
-
-const CurrencySelector = styled.div`
-  position: absolute;
-  width: 300px;
-  background-color: #fff;
-  border-radius: 17px;
-  padding: 15px;
-  top: 60px;
-  display: flex;
-  flex-direction: column;
-  z-index: 1;
-`;
-const CurrencyItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  height: 40px;
-  align-items: center;
-  padding: 0 5px;
-
-  &:hover {
-    background-color: #e8e8e8;
-    cursor: pointer;
-  }
-`;
-const CurrencyItemAmount = styled.div``;
-const CurrencyItemName = styled.div``;
-
-const DownArrow = styled.i`
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  margin-left: 10px;
-`;
+import {
+  Container,
+  Toggle,
+  CurrencyText,
+  CurrencySelector,
+  CurrencyItem,
+  CurrencyItemAmount,
+  CurrencyItemName,
+  DownArrow,
+  CurrencyImage,
+  CurrencyInfo
+} from "./CurrencySelector.style";
 
 type Props = {
   currency: Currency | null;
@@ -85,7 +42,10 @@ const CurrencyInput: React.FC<Props> = ({ currency, onChange }) => {
                 setIsSelectOpen(false);
               }}
             >
-              <CurrencyItemName>{p.currency.base}</CurrencyItemName>
+              <CurrencyInfo>
+                <CurrencyImage backgroundImage={p.currency.imagePath} />
+                <CurrencyItemName>{p.currency.base}</CurrencyItemName>
+              </CurrencyInfo>
               <CurrencyItemAmount>{p.amount}</CurrencyItemAmount>
             </CurrencyItem>
           ))}

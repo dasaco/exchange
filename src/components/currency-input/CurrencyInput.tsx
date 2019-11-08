@@ -7,57 +7,25 @@ import Currency from "../../interfaces/Currency.interface";
 import { getMoneyString } from "../../services/exchange";
 import MaskedInput from "react-text-mask";
 import createNumberMask from "text-mask-addons/dist/createNumberMask";
-
-const Container = styled.div``;
-
-const Top = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const LeftSide = styled.div``;
-
-const RightSide = styled.div``;
-
-const BottomLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const BalanceText = styled.p<{
-  isHighlighed: boolean;
-}>`
-  color: ${props => (props.isHighlighed ? "#f51f90" : "#292929")};
-`;
-
-const ExceedsBalanceText = styled.p`
-  color: #8b8b8b;
-`;
-
-const AmountInput = styled.input<{
-  isGreyedOut: boolean;
-}>`
-  border: none;
-  font-size: 39px;
-  text-align: right;
-  outline: none;
-  background-color: transparent;
-
-  color: ${props => (props.isGreyedOut ? "#8b8b8b" : "#292929")};
-`;
+import {
+  Container,
+  Top,
+  LeftSide,
+  RightSide,
+  BottomLine,
+  BalanceText,
+  ExceedsBalanceText
+} from "./CurrencyInput.style";
 
 type Props = {
   value: number;
   currency: Currency | null;
   onAmountChange: Function;
   onCurrencyChange: Function;
-  isPocket?: boolean;
   exceedsBalance?: boolean;
 };
 
 const CurrencyInput: React.FC<Props> = ({
-  isPocket,
   value,
   currency,
   onAmountChange,

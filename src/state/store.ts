@@ -1,5 +1,5 @@
 import { createStore, compose, Store } from "redux";
-import { WalletState } from './ducks/wallet/reducers';
+import { WalletState } from "./ducks/wallet/reducer";
 import rootReducer from "./rootReducer";
 
 export interface AppState {
@@ -14,9 +14,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-const store: Store<AppState> = createStore(
-  rootReducer,
-  composeEnhancers()
-);
+const store: Store<AppState> = createStore(rootReducer, composeEnhancers());
 
 export default store;

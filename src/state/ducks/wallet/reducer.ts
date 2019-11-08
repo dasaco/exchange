@@ -1,41 +1,14 @@
 import { Reducer } from "redux";
 import Pocket from "../../../interfaces/Pocket.interface";
 import { types } from ".";
+import pockets from "../../../mock/pockets";
 
 export interface WalletState {
   pockets: Pocket[];
 }
 
 const initialState: WalletState = {
-  pockets: [
-    {
-      id: 1,
-      amount: 10,
-      currency: {
-        base: "GBP",
-        imagePath: "",
-        prefix: "£"
-      }
-    },
-    {
-      id: 2,
-      amount: 30,
-      currency: {
-        base: "EUR",
-        imagePath: "",
-        prefix: "€"
-      }
-    },
-    {
-      id: 3,
-      amount: 50,
-      currency: {
-        base: "USD",
-        imagePath: "",
-        prefix: "$"
-      }
-    }
-  ]
+  pockets: pockets
 };
 
 const reducer: Reducer<WalletState> = (
@@ -50,8 +23,6 @@ const reducer: Reducer<WalletState> = (
       const toPocket = state.pockets.find(
         p => p.currency.base === payload.toCurrency.base
       );
-
-      console.log({ payload });
 
       if (!fromPocket || !toPocket) {
         return state;
@@ -68,7 +39,9 @@ const reducer: Reducer<WalletState> = (
           } else if (p.currency.base === toPocket.currency.base) {
             return {
               ...p,
-              amount: p.amount + payload.amount * payload.rate
+              amount: parseFloat(
+                (p.amount + payload.amount * payload.rate).toFixed(2)
+              )
             };
           }
 
